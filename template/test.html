@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+	<head>
+		<meta charset="UTF-8" />
+		<!--<meta http-equiv="refresh" content="20">-->
+        <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+		<title>费用</title>
+
+        <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+		<script src="/static/ichart.1.2.1.min.js"></script>
+		<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        <script src="/static/layer/layer.js"></script>
+ <div>
+     <form action="#" method="post" id="f1">
+         <select name="three" id="selectone">
+             <%
+request.setCharacterEncoding("utf-8");
+%>
+             <option value="你好">你好</option>
+             <option value="b">2</option>
+             <option value="c">3</option>
+             <option value="d">4</option>
+         </select>
+
+
+
+         <input type="date" name="one" value="2014-01-28">到<input type="date" name="two"></input>&nbsp;<button type="submit" class="btn btn-primary" id="haha">提交</button>
+     </form>
+
+<button id="test1">小小提示层</button>
+     <script>
+
+$('#test1').click(function() {
+    layer.open({
+                type: 2,
+                skin:'ayui-layer-molv',
+                //title: '很多时候，我们想最大化看，比如像这个页面。',
+                shadeClose: true,
+                offset: 'rb',
+                shade: false,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['800px', '600px'],
+                content: 'http://139.129.47.28:9000/fee.html/',
+                shift: 9
+            });
+});
+
+</script>
+
+
+     <script>
+         $('#selectone').change(function(){
+             document.getElementById('f1').submit()
+
+
+         });
+
+
+
+     </script>
+
+
+</body>
+
+
+</html>

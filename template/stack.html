@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<!--<meta http-equiv="refresh" content="20">-->
+        <link rel="shortcut icon" type="image/x-icon" href="/static/img/favicon.ico">
+		<title>费用</title>
+		<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+		<script src='/static/ichart.1.2.1.min.js'></script>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+		$(function(){
+            var data = {{ cost|safe }};
+            var lab = {{ d|safe }};
+
+			var chart = new iChart.ColumnStacked2D({
+					render : 'canvasDiv',
+					data: data,
+					labels: lab,
+					title : {
+						text:'游戏项目费用使用情况',
+						color:'#dcd6cb',
+						textAlign:'center',
+						padding:'0 40',
+						font:'微软雅黑',
+						border:{
+							enable:true,
+							width:[0,0,4,0],
+							color:'#698389'
+						},
+						height:40
+					},
+					footnote : {
+						text:'数据来源：运维中心网游业务组',
+						font:'微软雅黑',
+						padding:'0 8',
+						color:'#dcd6cb'
+					},
+					padding:'8 0',
+					width : 800,
+					height : 400,
+					gradient : true,//应用背景渐变
+					gradient_mode:'LinearGradientDownUp',//渐变类型
+					color_factor : 0.1,//渐变因子
+					background_color : '#425154',
+					sub_option:{
+						label:{color:'#f9f9f9',fontsize:12,fontweight:600},
+						border : false
+					},
+					label:{color:'#dcd6cb',font:'微软雅黑',fontsize:12,fontweight:600},
+					legend:{
+						enable:true,
+						background_color : null,
+						line_height:25,
+						color:'#dcd6cb',
+						fontsize:12,
+						font:'微软雅黑',
+						fontweight:600,
+						border : {
+							enable : false
+						}
+					},
+					column_width:70,
+                    // column_space: 30,
+					coordinate:{
+						background_color : 0,
+						grid_color:'#888888',
+						axis : {
+							color : '#c0d0e0',
+							width : 0
+						},
+						scale:[{
+							 position:'left',
+							 scale_enable : false,
+							 start_scale:0,
+							 scale_space:200000,
+							 end_scale:2000000,
+							 label:{color:'#dcd6cb',fontsize:11,fontweight:600}
+						}],
+						width:'80%',
+						height:'76%'
+					}
+			});
+
+			//利用自定义组件构造左上侧单位
+			chart.plugin(new iChart.Custom({
+					drawFn:function(){
+						//计算位置
+						var coo = chart.getCoordinate(),
+							x = coo.get('originx'),
+							y = coo.get('originy');
+						//在左上侧的位置，渲染一个单位的文字
+						chart.target.textAlign('end')
+						.textBaseline('bottom')
+						.textFont('600 12px 微软雅黑')
+						.fillText('单位(元)',x,y-14,false,'#be5863')
+
+					}
+			}));
+
+			chart.draw();
+		});
+	</script>
+
+</head>
+
+
+
+
+<body style='background-color:#fcfcfc;'>
+
+
+
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h3 class="panel-title"><span><img src="/static/img/logo.png" alt="logo"></span></h3>
+</div>
+<div class="panel-body">
+	<div id="content" class="row-fluid">
+        <div class="col-md-2 well">
+     		<ul class="nav nav-pills nav-stacked">
+         		<li class="active"><a href="/stack.html/"><span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;游戏项目费用总览</a></li>
+  		 		<li><a href="/ldzwarea.html/">乱斗之王</a></li>
+		 		<li><a href="/cqbarea.html/">苍穹变</a></li>
+   				<li><a href="/tkzzarea.html/">坦克之战</a></li>
+   				<li><a href="#">地铁跑酷</a></li>
+   				<li><a href="#">纪念碑谷</a></li>
+				<li><a href="/excel/">导出数据EXCEL表</a></li>
+
+
+			</ul>
+        </div>
+
+        <div class="col-md-10 well" >
+			 <h2>费用使用详情</h2>
+			<div id='canvasDiv' style="float: left"></div>>
+
+        </div>
+</div>
+
+</div>
+</div>
+
+<div class="lianxi">
+    <div class="page head">
+        <h4 style="float: left">Contact US <span>联系我们</span></h4>
+        <span class="arrow"></span>
+    </div>
+    <div class="content">
+		  <button type="button" class="btn btn-default btn-primary">
+          <span class="glyphicon glyphicon-envelope"></span>
+        </button>
+		<button type="button" class="btn btn-default btn-primary">
+          <span class="glyphicon glyphicon-phone"></span>
+        </button>
+		<button type="button" class="btn btn-default btn-primary">
+          <span class="glyphicon glyphicon-home"></span>
+        </button>
+        <div class="page">
+            <div class="global-sns">
+
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="js/switch.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(".switch").Switch({
+                moveInterval:500,
+                interval:5000,
+                direction:"alpha",
+                handle:".triggers"
+            });
+            $(".tabs").children().click(function(){
+                $(this).addClass("cur").siblings().removeClass("cur");
+                var i = $(this).index();
+                $(".game-list").children(":eq("+i+")").show().siblings().hide();
+            });
+            $(".rec-g").find("li").hover(function(){
+                $(this).stop();
+                $(this).find("p").animate({"bottom":0},200);
+            },function(){
+                $(this).stop();
+                $(this).find("p").animate({"bottom":"-45px"},200);
+            });
+        });
+    </script><div class="footer">
+    <div class="page">
+        <div class="copyright">
+        <span class="logo"><img src="/static/img/logo-footer.png" /></span>
+            <span><br></span>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div id="footerBar" class="bar"><span class="c1"></span><span class="c2"></span><span class="c3"></span><span class="c4"></span><span class="c5"></span>
+    </div>
+</div>
+<script>
+$(function(){
+    $("#footerBar").children().css({"width":$(window).width()/5+"px"});
+});
+</script>
+<style type="text/css">
+.lianxi .head{height: 52px;line-height: 52px;position: relative;z-index:1;}
+.lianxi h4{font-size: 26px;color:#ababab;font-family:"å¾®è½¯é›…é»‘";}
+.lianxi h4 span{font-weight: 400;font-size: 22px;line-height: 48px;}
+.lianxi .arrow{width:20px;height:10px;position:absolute;bottom:-10px;left:70px;display: block;background: url("img/home-contact-arrow.png") no-repeat;}
+.lianxi .content{background: #e6e6e6;color:#ababab;font-family:"å¾®è½¯é›…é»‘";font-size: 18px;}
+.lianxi .content .page{padding:12px 0 47px;position:relative;}
+.lianxi .content li{padding:22px 0 12px 140px;min-height:70px;height:auto!important;height:70px;background: url("img/home-contact-icon.png") no-repeat -999em -999em;}
+.lianxi .content li p{line-height:28px;}
+.lianxi .content li.hezuo{background-position:40px 12px;}
+.lianxi .content li.dizhi{background-position:40px -88px;}
+.lianxi .content li.kefu{background-position:40px -188px;width:360px;float:left;}
+.lianxi .content li.dili{background-position:40px -288px;width:300px;float:left;}
+.lianxi .content li.dili p{margin-top:15px;}
+.lianxi .content a{color:#ababab;}
+.lianxi .content a:hover{color: #e64100;}
+.lianxi .global-sns{width:163px;position: absolute;right:33px;top:42px;}
+.page{width:980px;margin:0 auto;}
+.footer{background: #25282f;}
+.footer .bar{height:8px;line-height: 0;overflow:hidden;font-size: 0;text-align:center;width:100%;*zoom:1;}
+.footer .bar span{width:20%;display:inline-block;*display:inline;*zoom:1;height:8px;background:#fb3818;*width:19.9%;}
+.footer .bar span.c1{background:#0054ff;}
+.footer .bar span.c2{background:#9500ba;}
+.footer .bar span.c3{background:#fb3818;}
+.footer .bar span.c4{background:#fc7e03;}
+.footer .bar span.c5{background:#fff701;}
+.footer .copyright{padding:20px 0 12px 290px;color:#6f6f6f;line-height: 24px;min-height: 66px!important;height:66px;}
+.footer .copyright a{color:#6f6f6f;margin:0 10px;}
+.footer .copyright a:hover{color:#e64100;}
+.footer .copyright .logo{float: left;margin:20px 0 0 -260px;}
+.footer .copyright .cr{padding-left:10px;height:18px;line-height:18px;}
+.footer .copyright .cr span{margin-right:20px;}
+.footer .copyright .cr a{margin:0 2px;}
+.footer .copyright .cr a img{vertical-align:middle;}
+
+.footer .copyright .cr span.wangjian{margin:0;}
+.footer .copyright .cr span.wangjian img{width:18px;height:18px;}
+
+</style>>
+
+
+</body>
+
+
+</html>

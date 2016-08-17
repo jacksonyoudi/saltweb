@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>数据库管理系统</title>
+
+ 
+    <link href="css/responsive-menu.css" rel="stylesheet">
+
+    <!-- Unessential CSS - Just here to make this sample page prettier -->
+   
+    <link href="css/styles.css" rel="stylesheet"
+    <!-- Load Responsive Menu -->
+    <script src="js/responsive-menu.js" type="text/javascript"></script>
+
+    <!-- Setup Responsive Menu -->
+    <script>
+        jQuery(function ($) {
+            var menu = $('.rm-nav').rMenu({
+
+                // Optional Settings
+
+                /**
+                 * Minimum width for expanded layout in pixels - String
+                 * The media query in css file should be changed to match this
+                 * Must be in pixels and include px units if not using Modernizr.
+                 * @default '769px'
+                 */
+                minWidth: '960px',
+
+                /**
+                 * The opening and closing speed of the menus in milliseconds
+                 * @default 400
+                 */
+                //transitionSpeed: 400,
+
+                /**
+                 * The jQuery easing function - used with jQuery transitions
+                 * @default 'swing'
+                 * @options 'swing', 'linear'
+                 */
+                //jqueryEasing: 'swing',
+
+                /**
+                 * The CSS3 transitions easing function - used with CSS3 transitions
+                 * @default 'ease'
+                 */
+                //css3Easing: 'ease',
+
+                /**
+                 * Use button as toggle link - instead of text
+                 * @default true
+                 */
+                //toggleBtnBool: true,
+
+                /**
+                 * The Toggle Link selector
+                 * @default '.rm-toggle'
+                 */
+                //toggleSel: '.rm-toggle',
+
+
+                /**
+                 * The menu/sub-menu selector
+                 * @default 'ul'
+                 */
+                //menuSel: 'ul',
+
+                /**
+                 * The menu items selector
+                 * @default 'li'
+                 */
+                //menuItemsSel: 'li',
+
+                /**
+                 * Use CSS3 animation/transitions Boolean
+                 * @default true
+                 * Do not use animation/transitions: false
+                 */
+                //animateBool: false,
+
+                /**
+                 * Force GPU Acceleration Boolean
+                 * @default false
+                 * Do not force: false
+                 */
+                //accelerateBool: true,
+
+                /**
+                 * the setup complete callback function
+                 * @default 'false'
+                 */
+                //setupCallback: false,
+
+                /**
+                 * the tabindex start value - integer
+                 * @default 1
+                 */
+                //tabindexStart: 5,
+
+                /**
+                 * Use development mode - outputs information to console
+                 * @default false
+                 */
+                //developmentMode: false
+
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+<header>
+<div class="wrapper">
+    <div class="brand">
+        <p><a href="#" class="logo">jackson</a></p>
+    </div>
+
+    <!-- START Responsive Menu HTML -->
+    <div class="rm-container">
+        <a class="rm-toggle rm-button rm-nojs" href="#">Menu</a>
+
+        <nav class="rm-nav rm-nojs rm-lighten">
+            <ul> 
+			    
+                <li><a href="index.html">主页</a>                           
+                <li><a href="add.html">数据添加</a>                           
+                <li><a href="delete.html">数据删除</a></li>
+                <li><a href="change.html">数据修改</a>
+                <li><a href="list.html">显示所有数据</a>
+            </ul>
+        </nav>
+    </div><!-- .rm-container -->
+    <!-- End Responsive Menu HTML -->
+</div><!-- .wrapper -->
+</header>
+<section class="main">
+<div class="wrapper">
+<h1 class="tagline"><strong>数据库管理系统</strong><br>Django通过ORM管理MYSQL</h1>
+<div class="dev-output">
+<h3>列出所有数据</h3>
+<form action="/listall/" method="get">
+<input type="submit" class="button orange bigrounded" value="显示">
+</form>
+</div>
+</div><!-- .wrapper -->
+</section><!-- .main -->
+
+</body>
+</html>
